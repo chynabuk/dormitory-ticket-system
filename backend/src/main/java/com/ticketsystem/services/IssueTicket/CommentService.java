@@ -1,4 +1,4 @@
-package com.ticketsystem.services;
+package com.ticketsystem.services.IssueTicket;
 
 import org.springframework.stereotype.Service;
 

@@ -1,22 +1,19 @@
-package com.ticketsystem.services.impl;
+package com.ticketsystem.services.IssueTicket;
 
 
 import com.ticketsystem.exceptions.impl.ResourceNotFoundException;
 import com.ticketsystem.models.dto.IssueTicketRequest;
 import com.ticketsystem.models.dto.IssueTicketResponse;
-import com.ticketsystem.models.entities.IssueStatusHistory;
 import com.ticketsystem.models.entities.IssueTicket;
 import com.ticketsystem.models.entities.User;
 import com.ticketsystem.models.enums.Status;
 import com.ticketsystem.repositories.IssueStatusHistoryRepository;
 import com.ticketsystem.repositories.IssueTicketRepository;
 import com.ticketsystem.repositories.UserRepository;
-import com.ticketsystem.services.IssueTicketService;
 import com.ticketsystem.services.user.UserReadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;

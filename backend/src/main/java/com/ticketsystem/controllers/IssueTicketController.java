@@ -3,7 +3,7 @@ package com.ticketsystem.controllers;
 
 import com.ticketsystem.models.dto.IssueTicketRequest;
 import com.ticketsystem.models.dto.IssueTicketResponse;
-import com.ticketsystem.services.IssueTicketService;
+import com.ticketsystem.services.IssueTicket.IssueTicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

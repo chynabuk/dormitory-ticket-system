@@ -1,8 +1,7 @@
-package com.ticketsystem.services;
+package com.ticketsystem.services.IssueTicket;
 
 import com.ticketsystem.models.dto.IssueTicketRequest;
 import com.ticketsystem.models.dto.IssueTicketResponse;
-import com.ticketsystem.models.entities.IssueTicket;
 
 import java.util.List;
 
