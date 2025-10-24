@@ -22,7 +22,6 @@ public class IssueTicketRequest {
     Boolean authorizationAccepted;
     Priority priority;
     Status currentStatus;
-    LocalDateTime resolvedAt;
     String externalCompanyName;
     Long assignedToId;
     Long createdById;
