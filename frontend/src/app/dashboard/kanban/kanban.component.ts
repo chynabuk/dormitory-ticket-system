@@ -16,7 +16,7 @@ export class KanbanComponent {
     constructor(private httpClient: HttpClient, private loginFormService: LoginFormService) {}
 
     ngOnInit() { 
-        this.httpClient.get(api + issues, 
+        this.httpClient.get(api + issues + "/grouped", 
             { 
                 headers: {
                     Authentication: this.loginFormService.userCredentials?.['accessToken']
