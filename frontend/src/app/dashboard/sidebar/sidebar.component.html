@@ -1,0 +1,10 @@
+<div class="title">Ticketssystem</div>
+@for (item of sidebarItems; track item.label) {
+<div class="flex-container item">
+    <i>Icon</i>
+    <span [routerLink]="item.route">{{ item.label }}</span>
+</div>
+}
+<div class="footer">
+    <span routerLink="/sign-out" style="cursor: pointer;">Sign out</span>
+</div>

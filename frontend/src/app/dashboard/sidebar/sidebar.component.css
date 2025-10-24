@@ -1,0 +1,49 @@
+:host {
+    background-color: #111111;
+    width: 200px;
+    height: 100vh;
+    gap: 5px;
+    padding: 10px;
+    font-size: 16px;
+    position: relative;
+    color: white;
+}
+
+.title {
+    font-size: 1.2em;
+}
+
+div {
+    padding: 5px 20px;
+    align-items: center;
+}
+
+.item {
+    cursor: pointer;
+}
+
+.item span {
+    margin-left: 10px;
+    position: relative;
+}
+
+.item:hover {
+    background-color: rgba(255, 255, 255, 0.133);
+    border-left: 2px solid white;
+}
+
+.item span::before {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    transition: width 0.5s;
+}
+
+.item:hover span::before {
+    width: 100%;
+}
