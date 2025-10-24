@@ -11,13 +11,18 @@ import { RouterLink } from "@angular/router";
 export class SidebarComponent {
   public sidebarItems = [
     {
+      label: 'Kanban',
+      route: 'kanban',
+      icon: 'fa-solid fa-ticket'
+    },
+    {
       label: 'Tickets',
-      route: '',
+      route: 'tickets',
       icon: 'fa-solid fa-ticket'
     },
     {
       label: 'Users',
-      route: '',
+      route: 'users',
       icon: 'fa-solid fa-users'
     }
   ]
