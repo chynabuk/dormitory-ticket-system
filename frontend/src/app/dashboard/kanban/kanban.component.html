@@ -1,7 +1,31 @@
 <div class="w-100 min-vh-100 background">
     <div class="row p-2 m-0 w-100">
-        <div class="col-4 px-3">
-            <div class="bg-white w-100 d-flex justify-content-between align-items-center border border-secondary px-3 py-2">
+        <div class="col-3 px-3">
+            <div class="bg-danger text-light w-100 d-flex justify-content-between align-items-center border border-secondary px-3 py-2">
+                <span class="fw-bold fs-5">Weggeworfen</span>
+                <i class="fa-solid fa-trash fa-xl cursor-pointer"></i>
+            </div>
+            <div class="kanban-target w-100 pt-3">
+                <div id="kanban-card-4" class="kanban-card pb-3" draggable="true">
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <h5 class="card-title me-2">562-4 Alaken Kubatbekov</h5>
+                            </div>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-nowrap">
+                                    <i class="fa-solid fa-calendar"></i> 12.09.2025 13:25
+                                </span>
+                                <i class="fa-solid fa-message cursor-pointer"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 px-3">
+            <div class="bg-primary text-light w-100 d-flex justify-content-between align-items-center border border-secondary px-3 py-2">
                 <span class="fw-bold fs-5">Neue Tickets</span>
                 <i class="fa-solid fa-ticket fa-xl cursor-pointer"></i>
             </div>
@@ -24,8 +48,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-4 px-3 d-flex flex-column">
-            <div class="bg-white w-100 d-flex justify-content-between align-items-center border border-secondary px-3 py-2">
+        <div class="col-3 px-3 d-flex flex-column">
+            <div class="bg-warning text-light  w-100 d-flex justify-content-between align-items-center border border-secondary px-3 py-2">
                 <span class="fw-bold fs-5">Im Prozess</span>
                 <i class="fa-solid fa-hourglass-half fa-xl cursor-pointer"></i>
             </div>
@@ -48,8 +72,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-4 px-3">
-            <div class="bg-white w-100 d-flex justify-content-between align-items-center border border-secondary px-3 py-2">
+        <div class="col-3 px-3">
+            <div class="bg-success text-light w-100 d-flex justify-content-between align-items-center border border-secondary px-3 py-2">
                 <span class="fw-bold fs-5">Abgeschlossen</span>
                 <i class="fa-solid fa-hourglass-end fa-xl cursor-pointer"></i>
             </div>
