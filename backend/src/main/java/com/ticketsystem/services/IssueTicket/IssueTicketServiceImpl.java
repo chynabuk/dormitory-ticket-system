@@ -7,12 +7,13 @@ import com.ticketsystem.models.dto.IssueTicketResponse;
 import com.ticketsystem.models.entities.IssueTicket;
 import com.ticketsystem.models.entities.User;
 import com.ticketsystem.models.enums.Status;
-import com.ticketsystem.repositories.IssueStatusHistoryRepository;
 import com.ticketsystem.repositories.IssueTicketRepository;
 import com.ticketsystem.repositories.UserRepository;
 import com.ticketsystem.services.user.UserReadService;
+import com.ticketsystem.utils.ImageUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,8 +26,8 @@ public class IssueTicketServiceImpl implements IssueTicketService {
 
     private final IssueTicketRepository issueTicketRepository;
     private final UserRepository userRepository;
-    private final IssueStatusHistoryRepository issueStatusHistoryRepository;
     private final UserReadService userReadService;
+    private final ImageUtil imageUtil;
 
     @Override
     public IssueTicketResponse create(IssueTicketRequest request) {
@@ -37,6 +38,15 @@ public class IssueTicketServiceImpl implements IssueTicketService {
         return mapToResponse(issueTicketRepository.save(issue));
     }
 
+    @Override
+    public IssueTicketResponse createWithPhoto(IssueTicketRequest request, MultipartFile image) {
+        IssueTicket issueTicket = new IssueTicket();
+        mapRequestToEntity(request, issueTicket);
+        if (issueTicket.getCurrentStatus() == null) issueTicket.setCurrentStatus(Status.CREATED);
+
+        initImage(issueTicket, image);
+        return mapToResponse(issueTicketRepository.save(issueTicket));
+    }
 
     @Override
     public IssueTicketResponse getById(Long id) {
@@ -121,6 +131,17 @@ public class IssueTicketServiceImpl implements IssueTicketService {
                 .build();
     }
 
-
+    private boolean initImage(IssueTicket issueTicket, MultipartFile image){
+        if (image != null){
+            try {
+                issueTicket.setImageUrl(imageUtil.saveImage(image, issueTicket));
+                return true;
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
 
 }

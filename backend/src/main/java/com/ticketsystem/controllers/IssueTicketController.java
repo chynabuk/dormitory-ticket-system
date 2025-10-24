@@ -6,7 +6,10 @@ import com.ticketsystem.models.dto.IssueTicketResponse;
 import com.ticketsystem.services.IssueTicket.IssueTicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,28 +22,31 @@ public class IssueTicketController {
     private final IssueTicketService issueTicketService;
 
     //tested
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public IssueTicketResponse create(@RequestBody IssueTicketRequest request) {
-        return issueTicketService.create(request);
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<IssueTicketResponse> create(
+            @RequestPart(value = "createIssueTicket") IssueTicketRequest request,
+            @RequestPart(value = "image", required = false) MultipartFile image
+    ) {
+        return new ResponseEntity<>(issueTicketService.createWithPhoto(request, image),HttpStatus.CREATED);
     }
 
     //tested
     @GetMapping
-    public List<IssueTicketResponse> getAll() {
-        return issueTicketService.getAll();
+    public ResponseEntity<List<IssueTicketResponse>> getAll() {
+        return new ResponseEntity<>(issueTicketService.getAll(), HttpStatus.OK);
     }
 
     //tested
     @GetMapping("/{id}")
-    public IssueTicketResponse getById(@PathVariable Long id) {
-        return issueTicketService.getById(id);
+    public ResponseEntity<IssueTicketResponse> getById(@PathVariable Long id) {
+
+        return new ResponseEntity<>(issueTicketService.getById(id), HttpStatus.OK);
     }
 
     //tested
     @PutMapping("/{id}")
-    public IssueTicketResponse update(@PathVariable Long id, @RequestBody IssueTicketRequest request) {
-        return issueTicketService.update(id, request);
+    public ResponseEntity<IssueTicketResponse> update(@PathVariable Long id, @RequestBody IssueTicketRequest request) {
+        return new ResponseEntity<>(issueTicketService.update(id, request), HttpStatus.OK);
     }
 
 
