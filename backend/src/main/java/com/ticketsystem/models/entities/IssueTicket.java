@@ -19,22 +19,22 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class IssueTicket extends BaseEntity {
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     String description;
 
-    @Column(length = 100)
-    String city;
+    @Column(length = 100, nullable = false)
+    String city = "Zwickau";
 
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     String apartmentNumber;
 
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     String roomNumber;
 
     @Column(name = "image_url")
     String imageUrl;
 
-    @Column(name = "authorization_accepted")
+    @Column(name = "authorization_accepted", nullable = false)
     Boolean authorizationAccepted;
 
     @Column(length = 20, nullable = false)
