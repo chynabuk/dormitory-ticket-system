@@ -1,5 +1,6 @@
 package com.ticketsystem.models.entities;
 
+import com.ticketsystem.models.enums.Status;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -13,15 +14,18 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "comments")
-public class Comment {
-    @ManyToOne(fetch = FetchType.LAZY)
+@Table(name = "issue_status_history")
+public class IssueStatusHistory {
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    Status status;
+    @Column(length = 500)
+    String comment;
+    @ManyToOne
     @JoinColumn(name = "issue_ticket_id")
     IssueTicket issueTicket;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User changedBy;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id")
-    User author;
-    @Column(length = 1000, nullable = false)
-    String content;
 }

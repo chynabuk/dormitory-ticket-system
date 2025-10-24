@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "issue")
+@Table(name = "issue_ticket")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,7 +19,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class IssueTicket extends BaseEntity {
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(length = 1000, nullable = false)
     String description;
 
     @Column(length = 100, nullable = false)
