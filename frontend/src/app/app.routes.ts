@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { CanMatchFn, Router, Routes } from '@angular/router';
+import { ActivatedRouteSnapshot, CanMatchFn, ResolveFn, Router, Routes } from '@angular/router';
 import { api, user } from './const-variables';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { KanbanComponent } from './dashboard/kanban/kanban.component';
+import { TicketComponent } from './dashboard/ticket/ticket.component';
 import { TicketsTableComponent } from './dashboard/tickets-table/tickets-table.component';
 import { UsersTableComponent } from './dashboard/users-table/users-table.component';
 import { LoginFormComponent } from './login-form/login-form.component';
@@ -27,6 +28,13 @@ const userCanHaveAccess: CanMatchFn = () => {
     return false;
 };
 
+export const signOutProcess: ResolveFn<void> = (
+    route: ActivatedRouteSnapshot
+) => {
+    const loginFormService = inject(LoginFormService);
+    loginFormService.removeProfile();
+};
+
 export const routes: Routes = [
     {
         path: '',
@@ -35,7 +43,8 @@ export const routes: Routes = [
         children: [
             { path: 'kanban', component: KanbanComponent },
             { path: 'tickets', component: TicketsTableComponent },
-            { path: 'users', component: UsersTableComponent }
+            { path: 'users', component: UsersTableComponent },
+            { path: 'ticket', component: TicketComponent }
         ],
         resolve: [
             userCanHaveAccess
@@ -47,6 +56,9 @@ export const routes: Routes = [
     },
     {
         path: 'sign-in',
+        resolve: [
+            signOutProcess
+        ],
         component: LoginFormComponent
     }
 ];

@@ -26,4 +26,8 @@ export class LoginFormService {
       }
     })
   }
+
+  public removeProfile() {
+    localStorage.removeItem(this.storageKey);
+  }
 }
