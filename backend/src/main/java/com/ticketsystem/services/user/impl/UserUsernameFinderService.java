@@ -10,6 +10,6 @@ import org.springframework.stereotype.Service;
 public class UserUsernameFinderService {
     private final UserRepository userRepository;
     public User findByEmail(String email){
-        return new User();
+        return userRepository.findByEmail(email).orElse(null);
     }
 }

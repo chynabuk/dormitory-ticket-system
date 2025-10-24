@@ -13,7 +13,7 @@ public class UserDto {
     String name;
     String surname;
     String email;
-    Role role;
+    String role;
     String apartmentNumber;
     String roomNumber;
 }

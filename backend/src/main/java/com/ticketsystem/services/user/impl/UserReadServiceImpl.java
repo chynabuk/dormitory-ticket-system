@@ -23,7 +23,7 @@ public class UserReadServiceImpl implements UserReadService {
     private final UserDetailsService userDetailsService;
     @Override
     public UserDto getProfile() {
-        return userMapper.toDto(getUser());
+        return userMapper.apply(getUser());
     }
 
     @Override
@@ -42,6 +42,6 @@ public class UserReadServiceImpl implements UserReadService {
 
     @Override
     public List<UserDto> getAll() {
-        return new ArrayList<>();
+        return userRepository.findAll().stream().map(userMapper).toList();
     }
 }

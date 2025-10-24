@@ -36,6 +36,7 @@ public class UserWriteServiceImpl implements UserWriteService {
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
     private final AuthenticationManager authenticationManager;
+    private final UserRepository userRepository;
     private static final Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
     @Override
     public UserAuthDto login(UserAuthRequest request) {
@@ -61,7 +62,7 @@ public class UserWriteServiceImpl implements UserWriteService {
 
     @Override
     public UserDto createUser(UserCreateRequest request) {
-        return userMapper.toDto(create(request));
+        return userMapper.apply(userRepository.save(create(request)));
     }
 
     private User create(UserCreateRequest request){
@@ -70,6 +71,8 @@ public class UserWriteServiceImpl implements UserWriteService {
             throw new ResourceDuplicateException("User " + request.getEmail() + " is already existed");
         }
 
+        System.out.println(request.getPassword());
+        System.out.println(request.getRepeatPassword());
         if (!request.getPassword().equals(request.getRepeatPassword())){
             throw new PasswordNotMatchingException("Passwords are not matched");
         }
