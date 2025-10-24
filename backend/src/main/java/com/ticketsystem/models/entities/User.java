@@ -29,7 +29,7 @@ public class User extends BaseEntity implements GrantedAuthority {
     @Column(nullable = false)
     String password;
 
-    @Column
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     Role role;
 
