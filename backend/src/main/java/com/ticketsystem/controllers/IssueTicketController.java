@@ -1,6 +1,7 @@
 package com.ticketsystem.controllers;
 
 
+import com.ticketsystem.models.dto.IssueTicketGroupedResponse;
 import com.ticketsystem.models.dto.IssueTicketRequest;
 import com.ticketsystem.models.dto.IssueTicketResponse;
 import com.ticketsystem.services.IssueTicket.IssueTicketService;
@@ -48,6 +49,12 @@ public class IssueTicketController {
     public ResponseEntity<IssueTicketResponse> update(@PathVariable Long id, @RequestBody IssueTicketRequest request) {
         return new ResponseEntity<>(issueTicketService.update(id, request), HttpStatus.OK);
     }
+
+    @GetMapping("/grouped")
+    public IssueTicketGroupedResponse getTicketsGroupedByStatus() {
+        return issueTicketService.getTicketsGroupedByStatus();
+    }
+
 
 
 }
