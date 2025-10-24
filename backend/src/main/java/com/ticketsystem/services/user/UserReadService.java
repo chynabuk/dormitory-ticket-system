@@ -1,6 +1,6 @@
 package com.ticketsystem.services.user;
 
-import com.ticketsystem.models.dtos.UserDto;
+import com.ticketsystem.models.dto.UserDto;
 import com.ticketsystem.models.entities.User;
 
 import java.util.List;

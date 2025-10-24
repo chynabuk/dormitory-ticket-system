@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class UserController {
     private final UserReadService userReadService;
     private final UserWriteService userWriteService;

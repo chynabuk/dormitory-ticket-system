@@ -1,7 +1,7 @@
 package com.ticketsystem.services.user.impl;
 
 import com.ticketsystem.exceptions.impl.ResourceNotFoundException;
-import com.ticketsystem.models.dtos.UserDetailDto;
+import com.ticketsystem.models.dto.UserDetailDto;
 import com.ticketsystem.models.entities.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

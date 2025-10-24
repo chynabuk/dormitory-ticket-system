@@ -1,4 +1,4 @@
-package com.ticketsystem.models.dtos;
+package com.ticketsystem.models.dto;
 
 import com.ticketsystem.models.enums.Role;
 import lombok.*;

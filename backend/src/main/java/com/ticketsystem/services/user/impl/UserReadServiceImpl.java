@@ -1,7 +1,7 @@
 package com.ticketsystem.services.user.impl;
 
-import com.ticketsystem.models.dtos.UserDetailDto;
-import com.ticketsystem.models.dtos.UserDto;
+import com.ticketsystem.models.dto.UserDetailDto;
+import com.ticketsystem.models.dto.UserDto;
 import com.ticketsystem.models.entities.User;
 import com.ticketsystem.models.mappers.UserMapper;
 import com.ticketsystem.repositories.UserRepository;
@@ -12,7 +12,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,14 +30,6 @@ public class UserReadServiceImpl implements UserReadService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return ((UserDetailDto) userDetailsService.loadUserByUsername((String) authentication.getPrincipal())).getUser();
     }
-
-//    @Override
-//    public List<UserDto> getAll() {
-//        return userRepository.findAllAndIsDeletedFalse()
-//                .stream()
-//                .map(userMapper::toDto)
-//                .toList();
-//    }
 
     @Override
     public List<UserDto> getAll() {

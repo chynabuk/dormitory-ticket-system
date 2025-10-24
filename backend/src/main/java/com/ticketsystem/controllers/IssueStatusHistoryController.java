@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/status-history")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class IssueStatusHistoryController {
 
     private final IssueStatusHistoryService historyService;

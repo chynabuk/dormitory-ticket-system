@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/issues")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class IssueTicketController {
 
     private final IssueTicketService issueTicketService;
