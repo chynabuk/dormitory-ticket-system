@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import $ from 'jquery';
+import { api, issues } from '../../const-variables';
+import { LoginFormService } from '../../login-form/login-form.service';
 
 @Component({
     selector: 'app-kanban',
@@ -10,8 +13,18 @@ import $ from 'jquery';
 })
 export class KanbanComponent {
 
+    constructor(private httpClient: HttpClient, private loginFormService: LoginFormService) {}
+
     ngOnInit() { 
-      
+        this.httpClient.get(api + issues, 
+            { 
+                headers: {
+                    Authentication: this.loginFormService.userCredentials?.['accessToken']
+                }
+            }
+        ).subscribe((res) => {
+            console.log(res);
+        });
     $(".kanban-card").on("dragstart", (e: any) => {
         e.originalEvent.dataTransfer.setData('kanban-card', $(e.target).attr('id'));
     });
