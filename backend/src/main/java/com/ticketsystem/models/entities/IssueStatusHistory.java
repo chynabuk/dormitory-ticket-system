@@ -19,8 +19,6 @@ public class IssueStatusHistory extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     Status status;
-    @Column(length = 500)
-    String comment;
     @ManyToOne
     @JoinColumn(name = "issue_ticket_id")
     IssueTicket issueTicket;

@@ -4,13 +4,20 @@ package com.ticketsystem.services.impl;
 import com.ticketsystem.exceptions.impl.ResourceNotFoundException;
 import com.ticketsystem.models.dto.IssueTicketRequest;
 import com.ticketsystem.models.dto.IssueTicketResponse;
+import com.ticketsystem.models.entities.IssueStatusHistory;
 import com.ticketsystem.models.entities.IssueTicket;
+import com.ticketsystem.models.entities.User;
 import com.ticketsystem.models.enums.Status;
+import com.ticketsystem.repositories.IssueStatusHistoryRepository;
 import com.ticketsystem.repositories.IssueTicketRepository;
+import com.ticketsystem.repositories.UserRepository;
 import com.ticketsystem.services.IssueTicketService;
+import com.ticketsystem.services.user.UserReadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,15 +27,18 @@ public class IssueTicketServiceImpl implements IssueTicketService {
 
 
     private final IssueTicketRepository issueTicketRepository;
-//    private final UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final IssueStatusHistoryRepository issueStatusHistoryRepository;
+    private final UserReadService userReadService;
 
-//    @Override
-//    public IssueTicketResponse create(IssueTicketRequest request) {
-//        IssueTicket issue = new IssueTicket();
-//        mapRequestToEntity(request, issue);
-//        if (issue.getCurrentStatus() == null) issue.setCurrentStatus(Status.CREATED);
-//        return mapToResponse(issueTicketRepository.save(issue));
-//    }
+    @Override
+    public IssueTicketResponse create(IssueTicketRequest request) {
+        IssueTicket issue = new IssueTicket();
+        mapRequestToEntity(request, issue);
+        if (issue.getCurrentStatus() == null) issue.setCurrentStatus(Status.CREATED);
+        issue.setCreateDateTime(LocalDateTime.now());
+        return mapToResponse(issueTicketRepository.save(issue));
+    }
 
 
     @Override
@@ -46,46 +56,55 @@ public class IssueTicketServiceImpl implements IssueTicketService {
                 .collect(Collectors.toList());
     }
 
-//    @Override
-//    public IssueTicketResponse update(Long id, IssueTicketRequest request) {
-//        IssueTicket existing = issueTicketRepository.findById(id)
-//                .orElseThrow(() -> new ResourceNotFoundException("Ticket not found with id: " + id));
-//        mapRequestToEntity(request, existing);
-//        return mapToResponse(issueTicketRepository.save(existing));
-//    }
 
-//    @Override
-//    public void delete(Long id) {
-//        IssueTicket ticket = issueTicketRepository.findById(id)
-//                .orElseThrow(() -> new ResourceNotFoundException("Ticket not found with id: " + id));
-//        issueTicketRepository.delete(ticket);
-//    }
+    @Override
+    public IssueTicketResponse update(Long id, IssueTicketRequest request) {
+        IssueTicket ticket = issueTicketRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Ticket not found with id: " + id));
 
 
-//    private void mapRequestToEntity(IssueTicketRequest req, IssueTicket entity) {
-//        entity.setDescription(req.getDescription());
-//        entity.setCity(req.getCity());
-//        entity.setApartmentNumber(req.getApartmentNumber());
-//        entity.setRoomNumber(req.getRoomNumber());
-//        entity.setImageUrl(req.getImageUrl());
-//        entity.setAuthorizationAccepted(req.getAuthorizationAccepted());
-//        entity.setPriority(req.getPriority());
-//        entity.setCurrentStatus(req.getCurrentStatus());
-//        entity.setResolvedAt(req.getResolvedAt());
-//        entity.setExternalCompanyName(req.getExternalCompanyName());
-//
-//        if (req.getAssignedToId() != null) {
-//            User assigned = userRepository.findById(req.getAssignedToId())
-//                    .orElseThrow(() -> new ResourceNotFoundException("Assigned user not found"));
-//            entity.setAssignedTo(assigned);
-//        }
-//
-//        if (req.getCreatedById() != null) {
-//            User creator = userRepository.findById(req.getCreatedById())
-//                    .orElseThrow(() -> new ResourceNotFoundException("Creator user not found"));
-//            entity.setCreatedBy(creator);
-//        }
-//    }
+        Status newStatus = request.getCurrentStatus();
+        if (newStatus != null && newStatus != ticket.getCurrentStatus()) {
+            ticket.setCurrentStatus(newStatus);
+
+            switch (newStatus) {
+                case RESOLVED -> ticket.setResolvedAt(LocalDateTime.now());
+                case IN_PROGRESS, DISCARDED -> ticket.setUpdateDateTime(LocalDateTime.now());
+                default -> {}
+            }
+        }
+        mapRequestToEntity(request, ticket);
+
+        IssueTicket saved = issueTicketRepository.save(ticket);
+        return mapToResponse(saved);
+    }
+
+
+
+
+    private void mapRequestToEntity(IssueTicketRequest req, IssueTicket entity) {
+        entity.setDescription(req.getDescription());
+        entity.setCity(req.getCity());
+        entity.setApartmentNumber(req.getApartmentNumber());
+        entity.setRoomNumber(req.getRoomNumber());
+        entity.setImageUrl(req.getImageUrl());
+        entity.setAuthorizationAccepted(req.getAuthorizationAccepted());
+        entity.setPriority(req.getPriority());
+        entity.setCurrentStatus(req.getCurrentStatus());
+        entity.setExternalCompanyName(req.getExternalCompanyName());
+
+        if (req.getAssignedToId() != null) {
+            User assigned = userRepository.findById(req.getAssignedToId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Assigned user not found"));
+            entity.setAssignedTo(assigned);
+        }
+
+        if (req.getCreatedById() != null) {
+            User creator = userRepository.findById(req.getCreatedById())
+                    .orElseThrow(() -> new ResourceNotFoundException("Creator user not found"));
+            entity.setCreatedBy(creator);
+        }
+    }
 
     private IssueTicketResponse mapToResponse(IssueTicket entity) {
         return IssueTicketResponse.builder()

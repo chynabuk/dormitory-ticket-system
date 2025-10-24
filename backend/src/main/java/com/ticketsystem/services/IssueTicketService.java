@@ -8,10 +8,10 @@ import java.util.List;
 
 
 public interface IssueTicketService {
-//    IssueTicketResponse create(IssueTicketRequest request);
+    IssueTicketResponse create(IssueTicketRequest request);
     IssueTicketResponse getById(Long id);
     List<IssueTicketResponse> getAll();
-//    IssueTicketResponse update(Long id, IssueTicketRequest request);
-//    void delete(Long id);
+    IssueTicketResponse update(Long id, IssueTicketRequest request);
 }
+
 
