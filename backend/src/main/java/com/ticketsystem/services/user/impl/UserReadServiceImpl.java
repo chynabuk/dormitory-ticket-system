@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,11 +32,16 @@ public class UserReadServiceImpl implements UserReadService {
         return ((UserDetailDto) userDetailsService.loadUserByUsername((String) authentication.getPrincipal())).getUser();
     }
 
+//    @Override
+//    public List<UserDto> getAll() {
+//        return userRepository.findAllAndIsDeletedFalse()
+//                .stream()
+//                .map(userMapper::toDto)
+//                .toList();
+//    }
+
     @Override
     public List<UserDto> getAll() {
-        return userRepository.findAllAndIsDeletedFalse()
-                .stream()
-                .map(userMapper::toDto)
-                .toList();
+        return new ArrayList<>();
     }
 }
