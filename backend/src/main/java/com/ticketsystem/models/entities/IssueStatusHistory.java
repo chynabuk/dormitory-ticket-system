@@ -15,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "issue_status_history")
-public class IssueStatusHistory {
+public class IssueStatusHistory extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     Status status;
