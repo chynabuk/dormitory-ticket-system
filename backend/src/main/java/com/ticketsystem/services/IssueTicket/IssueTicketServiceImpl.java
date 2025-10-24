@@ -2,12 +2,12 @@ package com.ticketsystem.services.IssueTicket;
 
 
 import com.ticketsystem.exceptions.impl.ResourceNotFoundException;
+import com.ticketsystem.models.dto.IssueTicketGroupedResponse;
 import com.ticketsystem.models.dto.IssueTicketRequest;
 import com.ticketsystem.models.dto.IssueTicketResponse;
 import com.ticketsystem.models.entities.IssueTicket;
 import com.ticketsystem.models.entities.User;
 import com.ticketsystem.models.enums.Status;
-import com.ticketsystem.repositories.IssueStatusHistoryRepository;
 import com.ticketsystem.repositories.IssueTicketRepository;
 import com.ticketsystem.repositories.UserRepository;
 import com.ticketsystem.services.user.UserReadService;
@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +26,6 @@ public class IssueTicketServiceImpl implements IssueTicketService {
 
     private final IssueTicketRepository issueTicketRepository;
     private final UserRepository userRepository;
-    private final IssueStatusHistoryRepository issueStatusHistoryRepository;
     private final UserReadService userReadService;
 
     @Override
@@ -120,6 +120,34 @@ public class IssueTicketServiceImpl implements IssueTicketService {
                 .createdByName(entity.getCreatedBy() != null ? entity.getCreatedBy().getFirstName() + entity.getCreatedBy().getLastName() : null)
                 .build();
     }
+
+    @Override
+    public IssueTicketGroupedResponse getTicketsGroupedByStatus() {
+
+        List<IssueTicket> created = issueTicketRepository.findByCurrentStatus(Status.CREATED);
+        List<IssueTicket> inProgress = issueTicketRepository.findByCurrentStatus(Status.IN_PROGRESS);
+        List<IssueTicket> resolved = issueTicketRepository.findByCurrentStatus(Status.RESOLVED);
+        List<IssueTicket> discarded = issueTicketRepository.findByCurrentStatus(Status.DISCARDED);
+
+        Comparator<IssueTicket> priorityComparator = Comparator
+                .comparing(IssueTicket::getPriority, Comparator.nullsLast(Comparator.naturalOrder()));
+
+        created.sort(priorityComparator);
+        inProgress.sort(priorityComparator);
+        resolved.sort(priorityComparator);
+        discarded.sort(priorityComparator);
+
+
+        return IssueTicketGroupedResponse.builder()
+                .created(created.stream().map(this::mapToResponse).toList())
+                .inProgress(inProgress.stream().map(this::mapToResponse).toList())
+                .resolved(resolved.stream().map(this::mapToResponse).toList())
+                .discarded(discarded.stream().map(this::mapToResponse).toList())
+                .build();
+    }
+
+
+
 
 
 

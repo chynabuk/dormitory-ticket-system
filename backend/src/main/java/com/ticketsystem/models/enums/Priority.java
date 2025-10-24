@@ -1,7 +1,7 @@
 package com.ticketsystem.models.enums;
 
 public enum Priority {
-    LOW,
+    HIGH,
     MEDIUM,
-    HIGH
+    LOW
 }
