@@ -21,14 +21,14 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "src/bootstrap.css"
+              "src/assets/css/styles.css",
+              "src/assets/css/bootstrap.css",
+              "src/assets/fontawesome/css/fontawesome.min.css",
+              "src/assets/fontawesome/css/regular.min.css",
+              "src/assets/fontawesome/css/solid.min.css"
             ],
             "scripts": []
           },
@@ -93,5 +93,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

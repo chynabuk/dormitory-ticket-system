@@ -1,7 +1,7 @@
 <div class="title">Ticketssystem</div>
 @for (item of sidebarItems; track item.label) {
 <div class="flex-container item">
-    <i>Icon</i>
+    <i class="{{ item.icon }}"></i>
     <span [routerLink]="item.route">{{ item.label }}</span>
 </div>
 }

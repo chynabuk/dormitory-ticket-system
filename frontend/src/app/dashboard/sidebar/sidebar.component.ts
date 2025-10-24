@@ -12,11 +12,13 @@ export class SidebarComponent {
   public sidebarItems = [
     {
       label: 'Tickets',
-      route: ''
+      route: '',
+      icon: 'fa-solid fa-ticket'
     },
     {
       label: 'Users',
-      route: ''
+      route: '',
+      icon: 'fa-solid fa-users'
     }
   ]
 }
