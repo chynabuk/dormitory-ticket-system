@@ -51,8 +51,8 @@ public class IssueTicketController {
     }
 
     @GetMapping("/grouped")
-    public IssueTicketGroupedResponse getTicketsGroupedByStatus() {
-        return issueTicketService.getTicketsGroupedByStatus();
+    public ResponseEntity<IssueTicketGroupedResponse> getTicketsGroupedByStatus() {
+        return new ResponseEntity<>(issueTicketService.getTicketsGroupedByStatus(), HttpStatus.OK);
     }
 
 
