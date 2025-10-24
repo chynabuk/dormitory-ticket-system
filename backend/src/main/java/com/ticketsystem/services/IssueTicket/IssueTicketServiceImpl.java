@@ -46,8 +46,9 @@ public class IssueTicketServiceImpl implements IssueTicketService {
         mapRequestToEntity(request, issueTicket);
         if (issueTicket.getCurrentStatus() == null) issueTicket.setCurrentStatus(Status.CREATED);
 
-        initImage(issueTicket, image);
-        return mapToResponse(issueTicketRepository.save(issueTicket));
+        IssueTicket issueTicketCreated = issueTicketRepository.save(issueTicket);
+        initImage(issueTicketCreated, image);
+        return mapToResponse(issueTicketCreated);
     }
 
     @Override
@@ -87,10 +88,6 @@ public class IssueTicketServiceImpl implements IssueTicketService {
         IssueTicket saved = issueTicketRepository.save(ticket);
         return mapToResponse(saved);
     }
-
-
-
-
     private void mapRequestToEntity(IssueTicketRequest req, IssueTicket entity) {
         entity.setDescription(req.getDescription());
         entity.setCity(req.getCity());
@@ -157,10 +154,6 @@ public class IssueTicketServiceImpl implements IssueTicketService {
                 .discarded(discarded.stream().map(this::mapToResponse).toList())
                 .build();
     }
-
-
-
-
     private boolean initImage(IssueTicket issueTicket, MultipartFile image){
         if (image != null){
             try {

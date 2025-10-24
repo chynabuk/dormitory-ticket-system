@@ -11,7 +11,7 @@ import java.io.*;
 
 @Component
 public class ImageUtil {
-    private final static String uploadPath = "/ticket-images";
+    private final static String uploadPath = System.getProperty("user.dir") + "/ticket-images";
     public String saveImage(MultipartFile image, BaseEntity entity){
         File imagesFolder = new File(uploadPath);
         if (!imagesFolder.exists()) {
