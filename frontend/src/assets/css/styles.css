@@ -10,3 +10,21 @@
     position: absolute;
     bottom: 10px;
 }
+
+body {
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.min-vh-100 {
+    min-height: 100vh;
+}
+
+.background {
+    background-color: #EBEDF0 !important;
+}

@@ -13,7 +13,7 @@ export class SidebarComponent {
     {
       label: 'Kanban',
       route: 'kanban',
-      icon: 'fa-solid fa-ticket'
+      icon: 'fa-solid fa-clipboard-list'
     },
     {
       label: 'Tickets',
