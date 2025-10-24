@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { LoginFormService } from './login-form.service';
 
 @Component({
   selector: 'app-login-form',
@@ -11,4 +12,10 @@ import { FormsModule } from '@angular/forms';
 export class LoginFormComponent {
   public email = '';
   public password = '';
+
+  constructor(private service: LoginFormService) { }
+
+  public signIn() {
+    this.service.signIn(this.email, this.password);
+  }
 }
