@@ -46,13 +46,9 @@ public class IssueTicketServiceImpl implements IssueTicketService {
         IssueTicket issueTicket = new IssueTicket();
         mapRequestToEntity(request, issueTicket);
         if (issueTicket.getCurrentStatus() == null) issueTicket.setCurrentStatus(Status.CREATED);
-
+        issueTicket.setCreatedBy(userReadService.getUser());
         IssueTicket issueTicketCreated = issueTicketRepository.save(issueTicket);
         initImage(issueTicketCreated, image);
-//        if ( image != null && (request.getDescription() == null || request.getDescription().isBlank())) {
-//            String description = imageDescriptionService.generateDescription(image);
-//            issue.setDescription(description);
-//        }
 
         return mapToResponse(issueTicketCreated);
     }

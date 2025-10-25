@@ -26,7 +26,6 @@ public class IssueTicketController {
     private final IssueTicketService issueTicketService;
     private final UserReadService userService;
 
-    //tested
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<IssueTicketResponse> create(
             @RequestPart(value = "createIssueTicket") IssueTicketRequest request,
@@ -35,20 +34,17 @@ public class IssueTicketController {
         return new ResponseEntity<>(issueTicketService.createWithPhoto(request, image),HttpStatus.CREATED);
     }
 
-    //tested
     @GetMapping
     public ResponseEntity<List<IssueTicketResponse>> getAll() {
         return new ResponseEntity<>(issueTicketService.getAll(), HttpStatus.OK);
     }
 
-    //tested
     @GetMapping("/{id}")
     public ResponseEntity<IssueTicketResponse> getById(@PathVariable Long id) {
 
         return new ResponseEntity<>(issueTicketService.getById(id), HttpStatus.OK);
     }
 
-    //tested
     @PutMapping("/{id}")
     public ResponseEntity<IssueTicketResponse> update(@PathVariable Long id, @RequestBody IssueTicketRequest request) {
         return new ResponseEntity<>(issueTicketService.update(id, request), HttpStatus.OK);
