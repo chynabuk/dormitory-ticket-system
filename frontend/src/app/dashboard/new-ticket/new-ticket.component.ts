@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { api, issues } from '../../const-variables';
+import { LoginFormService } from '../../login-form/login-form.service';
+import $ from 'jquery';
+import { dateTimeFormatter } from '../../functions';
 
 @Component({
   selector: 'app-new-ticket',
@@ -8,5 +13,5 @@ import { Component } from '@angular/core';
   styleUrl: './new-ticket.component.css'
 })
 export class NewTicketComponent {
-
+  public currentDate:Date = new Date();
 }
