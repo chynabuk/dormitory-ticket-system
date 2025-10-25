@@ -4,8 +4,10 @@ package com.ticketsystem.controllers;
 import com.ticketsystem.models.dto.IssueTicketGroupedResponse;
 import com.ticketsystem.models.dto.IssueTicketRequest;
 import com.ticketsystem.models.dto.IssueTicketResponse;
+import com.ticketsystem.models.entities.User;
 import com.ticketsystem.models.requests.user.UpdateIssueStateRequest;
 import com.ticketsystem.services.IssueTicket.IssueTicketService;
+import com.ticketsystem.services.user.UserReadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,6 +24,7 @@ import java.util.List;
 public class IssueTicketController {
 
     private final IssueTicketService issueTicketService;
+    private final UserReadService userService;
 
     //tested
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
@@ -60,6 +63,11 @@ public class IssueTicketController {
     public ResponseEntity<IssueTicketResponse> update(@RequestBody UpdateIssueStateRequest request) {
         issueTicketService.updateStatus(request.getId(), request.getStatus());
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List<IssueTicketResponse>> getUserTickets() {
+        return new ResponseEntity<>(issueTicketService.getAllByUserId(), HttpStatus.OK);
     }
 
 }

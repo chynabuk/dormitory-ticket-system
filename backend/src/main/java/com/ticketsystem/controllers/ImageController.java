@@ -4,10 +4,7 @@ import com.ticketsystem.utils.ImageUtil;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.engine.jdbc.StreamUtils;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -16,6 +13,7 @@ import java.io.InputStream;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/image")
+@CrossOrigin("*")
 public class ImageController {
     private final ImageUtil imageUtil;
 

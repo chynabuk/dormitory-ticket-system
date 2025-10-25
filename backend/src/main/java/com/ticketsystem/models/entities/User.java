@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Builder
@@ -38,6 +39,9 @@ public class User extends BaseEntity implements GrantedAuthority {
 
     @Column(name = "room_number")
     String roomNumber;
+
+    @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    List<IssueTicket> issueTicketList;
 
     @Override
     public String getAuthority() {

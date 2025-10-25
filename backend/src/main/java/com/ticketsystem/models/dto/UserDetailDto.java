@@ -12,7 +12,6 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class UserDetailDto implements UserDetails {
     private User user;

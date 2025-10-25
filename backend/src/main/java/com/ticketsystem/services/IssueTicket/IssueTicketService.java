@@ -13,6 +13,7 @@ public interface IssueTicketService {
     IssueTicketResponse create(IssueTicketRequest request);
     IssueTicketResponse getById(Long id);
     List<IssueTicketResponse> getAll();
+    List<IssueTicketResponse> getAllByUserId();
     IssueTicketResponse update(Long id, IssueTicketRequest request);
     IssueTicketGroupedResponse getTicketsGroupedByStatus();
     void updateStatus(Long issueTicketId, String status);

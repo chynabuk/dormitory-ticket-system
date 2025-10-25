@@ -1,5 +1,6 @@
 package com.ticketsystem.repositories;
 
+import com.ticketsystem.models.dto.IssueTicketResponse;
 import com.ticketsystem.models.entities.IssueTicket;
 import com.ticketsystem.models.enums.Status;
 import com.ticketsystem.models.enums.Priority;
@@ -14,7 +15,7 @@ public interface IssueTicketRepository extends
         JpaSpecificationExecutor<IssueTicket> {
 
     List<IssueTicket> findByPriority(Priority priority);
-
+    List<IssueTicketResponse> findAllByCreatedBy(Long createdBy);
     List<IssueTicket> findByCurrentStatus(Status status);
 }
 

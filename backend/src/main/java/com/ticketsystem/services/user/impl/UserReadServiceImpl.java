@@ -28,6 +28,7 @@ public class UserReadServiceImpl implements UserReadService {
     @Override
     public User getUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication.getPrincipal());
         return ((UserDetailDto) userDetailsService.loadUserByUsername((String) authentication.getPrincipal())).getUser();
     }
 
