@@ -28,5 +28,6 @@ public class IssueTicketResponse {
     String externalCompanyName;
     String assignedToName;
     String createdByName;
+
 }
 
