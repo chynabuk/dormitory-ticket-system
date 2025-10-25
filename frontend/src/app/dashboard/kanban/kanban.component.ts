@@ -5,11 +5,12 @@ import { api, issues } from '../../const-variables';
 import { LoginFormService } from '../../login-form/login-form.service';
 import Swal from 'sweetalert2';
 import { dateTimeFormatter } from '../../functions';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-kanban',
     standalone: true,
-    imports: [],
+    imports: [RouterLink],
     templateUrl: './kanban.component.html',
     styleUrl: './kanban.component.css'
 })

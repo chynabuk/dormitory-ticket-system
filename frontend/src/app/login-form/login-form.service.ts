@@ -22,7 +22,11 @@ export class LoginFormService {
           this.userCredentials = res;
           this.userCredentials['accessToken'] = 'Bearer ' + this.userCredentials['accessToken'];
           localStorage.setItem('profile', JSON.stringify(res));
-          this.router.navigate(['/kanban'], { replaceUrl: true });
+          if (res?.['role'] == "CARETAKER") {
+            this.router.navigate(['/kanban'], { replaceUrl: true });
+          } else {
+            this.router.navigate(['/new-ticket'], { replaceUrl: true });
+          }
         }
       },
       error: (err) => {
