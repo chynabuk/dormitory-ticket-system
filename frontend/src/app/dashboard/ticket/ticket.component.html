@@ -15,29 +15,33 @@
                         <span>Adör</span>
                         <span>Abteilung Wohnen/Technik</span>
                     </div>
-                    <span>Zwickau, den 25.10.2025</span>
+                    <span>Zwickau, den {{ dateTimeFormatter(ticket?.createdDateTime) }}</span>
                 </div>
                 <div class="mt-4 mb-3">
                     <u class="fs-3">Mängelanzeige</u>
                 </div>
                 <div class="d-flex justify-content-between mb-3">
-                    <div><span>Wohneinheits-/Wohnungs-Nr: .....................</span></div>
-                    <div><span>Zimmer: .....................</span></div>
+                    <div><span>Wohneinheits-/Wohnungs-Nr: {{ ticket?.apartmentNumber }}</span></div>
+                    <div><span>Zimmer: {{ ticket?.roomNumber }}</span></div>
                 </div>
-                <span class="mb-3">Name des Mieters: ................................</span>
-                <span class="mb-3">Mängel bzw. Schaden: ................................</span>
-                <span class="mb-3">Der Hausmeister ist berechtigt, bei Abwesenheit des Mieters die Wohneinheit bzw. das Zimmer zu betreten.</span>
+                <span class="mb-3">Name des Mieters: {{ ticket?.createdByName }}</span>
+                <span class="mb-3">Mängel bzw. Schaden: {{ ticket?.description }}</span>
+                <span class="mb-3">Der Hausmeister ist berechtigt, bei Abwesenheit des Mieters die Wohneinheit bzw. das
+                    Zimmer zu betreten.</span>
                 <div class="mb-3 d-flex">
                     <span>Mieter-Zustimmung: </span>
                     <div class="checkbox-wrapper-19 ms-3">
-                        <input type="checkbox" id="cbtest-19" checked disabled/>
+                        <input type="checkbox" id="cbtest-19" checked disabled />
                         <label for="cbtest-19" class="check-box"></label>
                     </div>
                 </div>
 
-                <span class="mb-3">Reparatur durch den Hausmeister am: ...............</span>
-                <span class="mb-3">Reparaturauftrag an Firma: ..........................</span>
-                <span class="mb-3">Hausmeister</span>
+                <span class="mb-3">Reparatur durch den Hausmeister am:
+                    {{ dateTimeFormatter(ticket?.resolvedAt) || '...............' }}
+                </span>
+                <span class="mb-3">Reparaturauftrag an Firma: {{ ticket?.externalCompanyName ||
+                    '..........................' }}</span>
+                <span class="mb-3">Hausmeister: {{ ticket?.assignedToName }}</span>
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import html2pdf from 'html2pdf.js';
 import { Subscription } from 'rxjs';
 import { api, issues } from '../../const-variables';
+import { dateTimeFormatter } from '../../functions';
 import { LoginFormService } from '../../login-form/login-form.service';
 
 @Component({
@@ -16,6 +17,7 @@ import { LoginFormService } from '../../login-form/login-form.service';
 export class TicketComponent implements OnInit, OnDestroy {
   private subscription?: Subscription;
   public ticket?: any;
+  public dateTimeFormatter = dateTimeFormatter;
 
   constructor(private route: ActivatedRoute, private httpClient: HttpClient, private loginFormService: LoginFormService) { }
 
