@@ -18,6 +18,8 @@ public interface IssueTicketService {
     IssueTicketGroupedResponse getTicketsGroupedByStatus();
     void updateStatus(Long issueTicketId, String status);
     IssueTicketResponse createWithPhoto(IssueTicketRequest request, MultipartFile image);
+
+    byte[] getImageByIssueId(Long id);
 }
 
 

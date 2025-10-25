@@ -34,6 +34,14 @@ public class IssueTicketController {
         return new ResponseEntity<>(issueTicketService.createWithPhoto(request, image),HttpStatus.CREATED);
     }
 
+    @GetMapping(value = "/{id}/image", produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
+        byte[] imageBytes = issueTicketService.getImageByIssueId(id);
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(imageBytes);
+    }
+
     @GetMapping
     public ResponseEntity<List<IssueTicketResponse>> getAll() {
         return new ResponseEntity<>(issueTicketService.getAll(), HttpStatus.OK);

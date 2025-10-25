@@ -16,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
@@ -192,5 +194,24 @@ public class IssueTicketServiceImpl implements IssueTicketService {
         }
         return false;
     }
+
+    @Override
+    public byte[] getImageByIssueId(Long id) {
+        IssueTicket issue = issueTicketRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Ticket not found with id: " + id));
+
+        if (issue.getImageUrl() == null) {
+            throw new ResourceNotFoundException("This ticket has no image.");
+        }
+
+        String imagePath = System.getProperty("user.dir") + "/ticket-images/" + issue.getId() + "/" + issue.getImageUrl();
+
+        try (FileInputStream fis = new FileInputStream(imagePath)) {
+            return fis.readAllBytes();
+        } catch (IOException e) {
+            throw new ResourceNotFoundException("Could not read image for issue " + id);
+        }
+    }
+
 
 }
