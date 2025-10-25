@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import DataTable from 'datatables.net';
 import 'datatables.net-buttons-dt';
 import 'datatables.net-buttons/js/buttons.colVis.mjs';
@@ -13,7 +14,7 @@ import { LoginFormService } from '../../login-form/login-form.service';
 @Component({
   selector: 'app-tickets-table',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './tickets-table.component.html',
   styleUrl: './tickets-table.component.css'
 })
@@ -34,8 +35,6 @@ export class TicketsTableComponent {
       }
     }).subscribe((res) => {
       this.tableItems = res;
-
-      console.log(res);
       this.ticketsTable = new DataTable('#tickets', {
         data: this.tableItems,
         columns: [
@@ -46,7 +45,7 @@ export class TicketsTableComponent {
           { data: 'priority', title: 'Priorität' },
           { data: 'currentStatus', title: 'Status', render: (data: string) => status[data] },
           { data: 'createdDateTime', title: 'Erstellt um', render: (data: string) => dateTimeFormatter(data) },
-          { data: 'id', title: 'Aktion', render: (data: string) => '<div class="w-100 d-flex justify-content-center"><i class="fa-solid fa-arrow-right cursor-pointer"></i></div>' },
+          { data: 'id', title: 'Aktion', render: (data: string) => `<div class="w-100 d-flex justify-content-center"><a href="ticket/${data}"><i class="fa-solid fa-arrow-right cursor-pointer"></i></a></div>` },
         ],
         layout: {
           topStart: {
