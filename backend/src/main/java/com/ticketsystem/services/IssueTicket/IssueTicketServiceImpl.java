@@ -10,7 +10,6 @@ import com.ticketsystem.models.entities.User;
 import com.ticketsystem.models.enums.Status;
 import com.ticketsystem.repositories.IssueTicketRepository;
 import com.ticketsystem.repositories.UserRepository;
-import com.ticketsystem.services.image.ImageDescriptionService;
 import com.ticketsystem.services.user.UserReadService;
 import com.ticketsystem.utils.ImageUtil;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +28,6 @@ public class IssueTicketServiceImpl implements IssueTicketService {
 
 
     private final IssueTicketRepository issueTicketRepository;
-    private final ImageDescriptionService imageDescriptionService;
     private final UserRepository userRepository;
     private final UserReadService userReadService;
     private final ImageUtil imageUtil;
@@ -137,7 +135,7 @@ public class IssueTicketServiceImpl implements IssueTicketService {
                 .externalCompanyName(entity.getExternalCompanyName())
                 .assignedToName(entity.getAssignedTo() != null ? entity.getAssignedTo().getFirstName() + entity.getAssignedTo().getLastName(): null)
                 .createdByName(entity.getCreatedBy() != null ? entity.getCreatedBy().getFirstName() + entity.getCreatedBy().getLastName() : null)
-                .createdDateTIme(entity.getCreateDateTime())
+                .createdDateTime(entity.getCreateDateTime())
                 .build();
     }
 

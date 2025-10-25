@@ -24,6 +24,7 @@ public class IssueTicketResponse {
     Priority priority;
     Status currentStatus;
     LocalDateTime resolvedAt;
+    LocalDateTime createdDateTime;
     String externalCompanyName;
     String assignedToName;
     String createdByName;
