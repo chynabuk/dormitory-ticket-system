@@ -7,7 +7,7 @@
     </div>
 
     <div class="w-100 d-flex mt-5 justify-content-center">
-        <div id="paperToPdf" class="w-50 bg-white d-flex justify-content-center fw-ticket">
+        <div id="paperToPdf" class="ticket-width ticket-fs bg-white d-flex justify-content-center fw-ticket">
             <div class="w-75 py-5 d-flex flex-column">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-column">
@@ -27,11 +27,22 @@
                 <span class="mb-3">Name des Mieters: ................................</span>
                 <span class="mb-3">Mängel bzw. Schaden: ................................</span>
                 <span class="mb-3">Der Hausmeister ist berechtigt, bei Abwesenheit des Mieters die Wohneinheit bzw. das Zimmer zu betreten.</span>
-                <span class="mb-3">Unterschrift des Mieters: ................................</span>
+                <div class="mb-3 d-flex">
+                    <span>Mieter-Zustimmung: </span>
+                    <div class="checkbox-wrapper-19 ms-3">
+                        <input type="checkbox" id="cbtest-19" checked disabled/>
+                        <label for="cbtest-19" class="check-box"></label>
+                    </div>
+                </div>
+
                 <span class="mb-3">Reparatur durch den Hausmeister am: ...............</span>
                 <span class="mb-3">Reparaturauftrag an Firma: ..........................</span>
                 <span class="mb-3">Hausmeister</span>
             </div>
         </div>
+    </div>
+
+    <div class="w-100 d-flex mt-5 justify-content-center">
+        <button (click)="htmlToPDF()" class="btn btn-warning btn-lg">Drücken</button>
     </div>
 </div>
