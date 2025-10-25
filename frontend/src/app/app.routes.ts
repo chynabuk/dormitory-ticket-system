@@ -45,7 +45,7 @@ export const routes: Routes = [
             { path: 'kanban', component: KanbanComponent },
             { path: 'tickets', component: TicketsTableComponent },
             { path: 'users', component: UsersTableComponent },
-            { path: 'ticket', component: TicketComponent },
+            { path: 'ticket/:id', component: TicketComponent },
             { path: 'new-ticket', component: NewTicketComponent }
         ],
         resolve: [
