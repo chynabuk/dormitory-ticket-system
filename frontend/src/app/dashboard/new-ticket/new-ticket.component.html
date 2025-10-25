@@ -6,7 +6,7 @@
         </div>
     </div>
 
-    <div class="w-100 d-flex mt-5 justify-content-center">
+    <div class="w-100 d-flex mt-5 justify-content-center flex-column align-items-center">
         <div id="paperToPdf" class="ticket-width ticket-fs bg-white d-flex justify-content-center fw-ticket">
             <div class="w-75 py-5 d-flex flex-column">
                 <div class="d-flex justify-content-between">
@@ -15,23 +15,26 @@
                         <span>Adör</span>
                         <span>Abteilung Wohnen/Technik</span>
                     </div>
-                    <span>Zwickau, den 25.10.2025</span>
+                    <span>Zwickau, den {{ currentDate.toLocaleString() }}</span>
                 </div>
                 <div class="mt-4 mb-3">
                     <u class="fs-3">Mängelanzeige</u>
                 </div>
                 <div class="d-flex justify-content-between mb-3">
-                    <div><span>Wohneinheits-/Wohnungs-Nr: .....................</span></div>
-                    <div><span>Zimmer: .....................</span></div>
+                    <div><span>Wohneinheits-/Wohnungs-Nr: <input type="number" name="apartmentNumber"></span></div>
+                    <div><span>Zimmer:  <input type="number" name="roomNumber"></span></div>
                 </div>
-                <span class="mb-3">Name des Mieters: ................................</span>
-                <span class="mb-3">Mängel bzw. Schaden: ................................</span>
+                <span class="mb-3">Name des Mieters:  <input type="number" name="createdByName"></span>
+                <div>
+                    <span class="mb-3">Mängel bzw. Schaden: </span>
+                    <textarea name="description" class="w-100" rows="3"></textarea>
+                </div>
                 <span class="mb-3">Der Hausmeister ist berechtigt, bei Abwesenheit des Mieters die Wohneinheit bzw. das
                     Zimmer zu betreten.</span>
                 <div class="mb-3 d-flex">
                     <span>Mieter-Zustimmung: </span>
                     <div class="checkbox-wrapper-19 ms-3">
-                        <input type="checkbox" id="cbtest-19" checked disabled />
+                        <input type="checkbox" id="cbtest-19"/>
                         <label for="cbtest-19" class="check-box"></label>
                     </div>
                 </div>
@@ -41,9 +44,13 @@
                 <span class="mb-3">Hausmeister</span>
             </div>
         </div>
+        <div class="mt-3 ticket-width">
+            <input class="form-control" type="file" id="formFile">
+        </div>
     </div>
 
+
     <div class="w-100 d-flex mt-5 justify-content-center">
-        <button class="btn btn-warning btn-lg">Drücken</button>
+        <button class="btn btn-warning btn-lg">Erstellen</button>
     </div>
 </div>
