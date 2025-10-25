@@ -135,8 +135,8 @@ public class IssueTicketServiceImpl implements IssueTicketService {
                 .currentStatus(entity.getCurrentStatus())
                 .resolvedAt(entity.getResolvedAt())
                 .externalCompanyName(entity.getExternalCompanyName())
-                .assignedToName(entity.getAssignedTo() != null ? entity.getAssignedTo().getFirstName() + entity.getAssignedTo().getLastName(): null)
-                .createdByName(entity.getCreatedBy() != null ? entity.getCreatedBy().getFirstName() + entity.getCreatedBy().getLastName() : null)
+                .assignedToName(entity.getAssignedTo() != null ? entity.getAssignedTo().getFirstName() + " " + entity.getAssignedTo().getLastName(): null)
+                .createdByName(entity.getCreatedBy() != null ? entity.getCreatedBy().getFirstName() + " " + entity.getCreatedBy().getLastName() : null)
                 .createdDateTime(entity.getCreateDateTime())
                 .build();
     }
