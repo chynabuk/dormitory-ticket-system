@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from "@angular/router";
+import { LoginFormService } from '../../login-form/login-form.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,17 +14,26 @@ export class SidebarComponent {
     {
       label: 'Kanban',
       route: 'kanban',
-      icon: 'fa-solid fa-clipboard-list'
+      icon: 'fa-solid fa-clipboard-list',
+      role: 'CARETAKER'
+    },
+    {
+      label: 'New Ticket',
+      route: 'new-ticket',
+      icon: 'fa-solid fa-plus',
+      role: 'STUDENT'
     },
     {
       label: 'Tickets',
       route: 'tickets',
-      icon: 'fa-solid fa-ticket'
-    },
-    {
-      label: 'Users',
-      route: 'users',
-      icon: 'fa-solid fa-users'
+      icon: 'fa-solid fa-ticket',
+      role: 'ALL'
     }
-  ]
+  ];
+
+  constructor(private loginFormService: LoginFormService) { }
+
+  public get userRole() {
+    return this.loginFormService.userCredentials?.['role'];
+  }
 }

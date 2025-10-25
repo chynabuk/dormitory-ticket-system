@@ -4,6 +4,7 @@ import { ActivatedRouteSnapshot, CanMatchFn, ResolveFn, Router, Routes } from '@
 import { api, user } from './const-variables';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { KanbanComponent } from './dashboard/kanban/kanban.component';
+import { NewTicketComponent } from './dashboard/new-ticket/new-ticket.component';
 import { TicketComponent } from './dashboard/ticket/ticket.component';
 import { TicketsTableComponent } from './dashboard/tickets-table/tickets-table.component';
 import { UsersTableComponent } from './dashboard/users-table/users-table.component';
@@ -44,7 +45,8 @@ export const routes: Routes = [
             { path: 'kanban', component: KanbanComponent },
             { path: 'tickets', component: TicketsTableComponent },
             { path: 'users', component: UsersTableComponent },
-            { path: 'ticket', component: TicketComponent }
+            { path: 'ticket', component: TicketComponent },
+            { path: 'new-ticket', component: NewTicketComponent }
         ],
         resolve: [
             userCanHaveAccess

@@ -1,9 +1,11 @@
 <div class="title">Ticketssystem</div>
 @for (item of sidebarItems; track item.label) {
+@if (item.role === 'ALL' || item.role === userRole) {
 <div [routerLink]="item.route" class="flex-container item">
     <i class="{{ item.icon }}"></i>
     <span>{{ item.label }}</span>
 </div>
+}
 }
 <div class="footer">
     <span routerLink="/sign-out" style="cursor: pointer;">Sign out</span>
