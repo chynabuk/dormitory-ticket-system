@@ -28,3 +28,7 @@ body {
 .background {
     background-color: #EBEDF0 !important;
 }
+
+.align-left {
+  text-align: left;
+}

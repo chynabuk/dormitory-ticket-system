@@ -35,7 +35,6 @@ export class KanbanComponent {
             }
         ).subscribe((res) => {
             this.kanbanItems = res;
-            console.log(res);
         });
     
     $(".kanban-target").on("dragover", (e: any) => {
