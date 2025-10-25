@@ -56,7 +56,7 @@ public class UserWriteServiceImpl implements UserWriteService {
                 .sign(algorithm);
 
         User user = userDetailDTO.getUser();
-        return new UserAuthDto(accessToken, user.getFirstName(), user.getLastName(), user.getEmail(), user.getRole().name());
+        return new UserAuthDto(user.getId(), accessToken, user.getFirstName(), user.getLastName(), user.getEmail(), user.getRole().name());
     }
 
     @Override
