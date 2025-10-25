@@ -70,8 +70,6 @@ public class UserWriteServiceImpl implements UserWriteService {
             throw new ResourceDuplicateException("User " + request.getEmail() + " is already existed");
         }
 
-        System.out.println(request.getPassword());
-        System.out.println(request.getRepeatPassword());
         if (!request.getPassword().equals(request.getRepeatPassword())){
             throw new PasswordNotMatchingException("Passwords are not matched");
         }

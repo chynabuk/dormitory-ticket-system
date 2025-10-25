@@ -15,8 +15,7 @@ public interface IssueTicketService {
     List<IssueTicketResponse> getAll();
     IssueTicketResponse update(Long id, IssueTicketRequest request);
     IssueTicketGroupedResponse getTicketsGroupedByStatus();
-
-
+    void updateStatus(Long issueTicketId, String status);
     IssueTicketResponse createWithPhoto(IssueTicketRequest request, MultipartFile image);
 }
 

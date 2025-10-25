@@ -4,6 +4,7 @@ package com.ticketsystem.controllers;
 import com.ticketsystem.models.dto.IssueTicketGroupedResponse;
 import com.ticketsystem.models.dto.IssueTicketRequest;
 import com.ticketsystem.models.dto.IssueTicketResponse;
+import com.ticketsystem.models.requests.user.UpdateIssueStateRequest;
 import com.ticketsystem.services.IssueTicket.IssueTicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -55,7 +56,11 @@ public class IssueTicketController {
         return new ResponseEntity<>(issueTicketService.getTicketsGroupedByStatus(), HttpStatus.OK);
     }
 
-
+    @PutMapping("/update/status")
+    public ResponseEntity<IssueTicketResponse> update(@RequestBody UpdateIssueStateRequest request) {
+        issueTicketService.updateStatus(request.getId(), request.getStatus());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }
 

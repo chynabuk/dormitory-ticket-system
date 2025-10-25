@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -154,6 +155,19 @@ public class IssueTicketServiceImpl implements IssueTicketService {
                 .discarded(discarded.stream().map(this::mapToResponse).toList())
                 .build();
     }
+
+    @Override
+    public void updateStatus(Long issueTicketId, String status) {
+        Optional<IssueTicket> issueTicketOptional = issueTicketRepository.findById(issueTicketId);
+        if (issueTicketOptional.isEmpty()) {
+            throw new ResourceNotFoundException("Issue with the given id doesn't exist!");
+        }
+
+        IssueTicket issueTicket = issueTicketOptional.get();
+        issueTicket.setCurrentStatus(Status.valueOf(status));
+        issueTicketRepository.save(issueTicket);
+    }
+
     private boolean initImage(IssueTicket issueTicket, MultipartFile image){
         if (image != null){
             try {

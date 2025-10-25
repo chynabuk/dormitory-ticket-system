@@ -1,9 +1,6 @@
 package com.ticketsystem.exceptions;
 
-import com.ticketsystem.exceptions.impl.ExpectationFailedException;
-import com.ticketsystem.exceptions.impl.PasswordNotMatchingException;
-import com.ticketsystem.exceptions.impl.ResourceDuplicateException;
-import com.ticketsystem.exceptions.impl.ResourceNotFoundException;
+import com.ticketsystem.exceptions.impl.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -16,6 +13,11 @@ import java.io.IOException;
 public class Advice extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<String> recordNotFoundException(ResourceNotFoundException e){
+        return new ResponseEntity<>(e.getMessage(), e.httpStatus);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<String> nullPropertyException(DataIntegrityViolationException e){
         return new ResponseEntity<>(e.getMessage(), e.httpStatus);
     }
 
