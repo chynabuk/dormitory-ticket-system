@@ -5,23 +5,25 @@
                 <span class="fw-bold fs-5">Weggeworfen</span>
                 <i class="fa-solid fa-trash fa-xl cursor-pointer"></i>
             </div>
-            <div class="kanban-target w-100 pt-3">
-                <div id="kanban-card-4" class="kanban-card pb-3" draggable="true">
+            <div id="DISCARDED" class="kanban-target w-100 pt-3">
+                @for (item of kanbanItems?.discarded; track item.id) {
+                <div id="kanban-card-{{ item.id }}" class="kanban-card pb-3" draggable="true">
                     <div class="card w-100">
                         <div class="card-body">
                             <div class="d-flex justify-content-between flex-wrap">
-                                <h5 class="card-title me-2">562-4 Alaken Kubatbekov</h5>
+                                <h5 class="card-title me-2">{{ item.apartmentNumber }}-{{ item.roomNumber }} {{ item.createdByName }}</h5>
                             </div>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">{{ item.description }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="text-nowrap">
-                                    <i class="fa-solid fa-calendar"></i> 12.09.2025 13:25
+                                    <i class="fa-solid fa-calendar"></i> {{ dateTimeFormatter(item.createdDateTime) }}
                                 </span>
                                 <i class="fa-solid fa-message cursor-pointer"></i>
                             </div>
                         </div>
                     </div>
                 </div>
+                }
             </div>
         </div>
         <div class="col-3 px-3">
@@ -29,23 +31,25 @@
                 <span class="fw-bold fs-5">Neue Tickets</span>
                 <i class="fa-solid fa-ticket fa-xl cursor-pointer"></i>
             </div>
-            <div class="kanban-target w-100 pt-3">
-                <div id="kanban-card-1" class="kanban-card pb-3" draggable="true">
+            <div id="CREATED" class="kanban-target w-100 pt-3">
+                @for (item of kanbanItems?.created; track item.id) {
+                <div id="kanban-card-{{ item.id }}" class="kanban-card pb-3" draggable="true">
                     <div class="card w-100">
                         <div class="card-body">
                             <div class="d-flex justify-content-between flex-wrap">
-                                <h5 class="card-title me-2">562-1 Alaken Kubatbekov</h5>
+                                <h5 class="card-title me-2">{{ item.apartmentNumber }}-{{ item.roomNumber }} {{ item.createdByName }}</h5>
                             </div>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">{{ item.description }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="text-nowrap">
-                                    <i class="fa-solid fa-calendar"></i> 12.09.2025 13:25
+                                    <i class="fa-solid fa-calendar"></i> {{ dateTimeFormatter(item.createdDateTime) }}
                                 </span>
                                 <i class="fa-solid fa-message cursor-pointer"></i>
                             </div>
                         </div>
                     </div>
                 </div>
+                }
             </div>
         </div>
         <div class="col-3 px-3 d-flex flex-column">
@@ -53,23 +57,25 @@
                 <span class="fw-bold fs-5">Im Prozess</span>
                 <i class="fa-solid fa-hourglass-half fa-xl cursor-pointer"></i>
             </div>
-            <div class="kanban-target w-100 pt-3">
-                <div id="kanban-card-2" class="kanban-card pb-3" draggable="true">
+            <div id="IN_PROGRESS" class="kanban-target w-100 pt-3">
+                @for (item of kanbanItems?.inProgress; track item.id) {
+                <div id="kanban-card-{{ item.id }}" class="kanban-card pb-3" draggable="true">
                     <div class="card w-100">
                         <div class="card-body">
                             <div class="d-flex justify-content-between flex-wrap">
-                                <h5 class="card-title me-2">562-2 Alaken Kubatbekov</h5>
+                                <h5 class="card-title me-2">{{ item.apartmentNumber }}-{{ item.roomNumber }} {{ item.createdByName }}</h5>
                             </div>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">{{ item.description }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="text-nowrap">
-                                    <i class="fa-solid fa-calendar"></i> 12.09.2025 13:25
+                                    <i class="fa-solid fa-calendar"></i> {{ dateTimeFormatter(item.createdDateTime) }}
                                 </span>
                                 <i class="fa-solid fa-message cursor-pointer"></i>
                             </div>
                         </div>
                     </div>
                 </div>
+                }
             </div>
         </div>
         <div class="col-3 px-3">
@@ -77,23 +83,25 @@
                 <span class="fw-bold fs-5">Abgeschlossen</span>
                 <i class="fa-solid fa-hourglass-end fa-xl cursor-pointer"></i>
             </div>
-            <div class="kanban-target w-100 pt-3">
-                <div id="kanban-card-3" class="kanban-card pb-3" draggable="true">
+            <div id="RESOLVED" class="kanban-target w-100 pt-3">
+                @for (item of kanbanItems?.resolved; track item.id) {
+                <div id="kanban-card-{{ item.id }}" class="kanban-card pb-3" draggable="true">
                     <div class="card w-100">
                         <div class="card-body">
                             <div class="d-flex justify-content-between flex-wrap">
-                                <h5 class="card-title me-2">562-3 Alaken Kubatbekov</h5>
+                                <h5 class="card-title me-2">{{ item.apartmentNumber }}-{{ item.roomNumber }} {{ item.createdByName }}</h5>
                             </div>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">{{ item.description }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="text-nowrap">
-                                    <i class="fa-solid fa-calendar"></i> 12.09.2025 13:25
+                                    <i class="fa-solid fa-calendar"></i> {{ dateTimeFormatter(item.createdDateTime) }}
                                 </span>
                                 <i class="fa-solid fa-message cursor-pointer"></i>
                             </div>
                         </div>
                     </div>
                 </div>
+                }
             </div>
         </div>
     </div>

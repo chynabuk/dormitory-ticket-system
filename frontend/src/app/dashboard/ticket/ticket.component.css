@@ -1,0 +1,7 @@
+:host {
+    min-width: calc(100% - 200px);
+}
+
+.fw-ticket {
+    font-weight: 600 !important;
+}
