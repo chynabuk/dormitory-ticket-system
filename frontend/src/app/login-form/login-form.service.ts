@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Params, Router } from '@angular/router';
-import { api, user } from '../const-variables';
 import Swal from 'sweetalert2';
+import { api, user } from '../const-variables';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,7 @@ export class LoginFormService {
       next: (res) => {
         if (res['accessToken']) {
           this.userCredentials = res;
+          this.userCredentials['accessToken'] = 'Bearer ' + this.userCredentials['accessToken'];
           localStorage.setItem('profile', JSON.stringify(res));
           this.router.navigate(['/kanban'], { replaceUrl: true });
         }
