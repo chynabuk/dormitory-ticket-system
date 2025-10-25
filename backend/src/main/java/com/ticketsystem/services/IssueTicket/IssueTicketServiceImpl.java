@@ -127,13 +127,18 @@ public class IssueTicketServiceImpl implements IssueTicketService {
     }
 
     private IssueTicketResponse mapToResponse(IssueTicket entity) {
+        String baseUrl = "http://localhost:8082/api/issues"; // ⚠️ поменяй если другой порт
+        String imageEndpoint = (entity.getImageUrl() != null)
+                ? baseUrl + "/" + entity.getId() + "/image"
+                : null;
+
         return IssueTicketResponse.builder()
                 .id(entity.getId())
                 .description(entity.getDescription())
                 .city(entity.getCity())
                 .apartmentNumber(entity.getApartmentNumber())
                 .roomNumber(entity.getRoomNumber())
-                .imageUrl(entity.getImageUrl())
+                .imageUrl(imageEndpoint)
                 .authorizationAccepted(entity.getAuthorizationAccepted())
                 .priority(entity.getPriority())
                 .currentStatus(entity.getCurrentStatus())
