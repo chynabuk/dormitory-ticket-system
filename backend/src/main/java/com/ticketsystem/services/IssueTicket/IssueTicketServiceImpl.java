@@ -10,6 +10,7 @@ import com.ticketsystem.models.entities.User;
 import com.ticketsystem.models.enums.Status;
 import com.ticketsystem.repositories.IssueTicketRepository;
 import com.ticketsystem.repositories.UserRepository;
+import com.ticketsystem.services.image.ImageDescriptionService;
 import com.ticketsystem.services.user.UserReadService;
 import com.ticketsystem.utils.ImageUtil;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,7 @@ public class IssueTicketServiceImpl implements IssueTicketService {
 
 
     private final IssueTicketRepository issueTicketRepository;
+    private final ImageDescriptionService imageDescriptionService;
     private final UserRepository userRepository;
     private final UserReadService userReadService;
     private final ImageUtil imageUtil;
@@ -49,6 +51,11 @@ public class IssueTicketServiceImpl implements IssueTicketService {
 
         IssueTicket issueTicketCreated = issueTicketRepository.save(issueTicket);
         initImage(issueTicketCreated, image);
+//        if ( image != null && (request.getDescription() == null || request.getDescription().isBlank())) {
+//            String description = imageDescriptionService.generateDescription(image);
+//            issue.setDescription(description);
+//        }
+
         return mapToResponse(issueTicketCreated);
     }
 
@@ -90,6 +97,8 @@ public class IssueTicketServiceImpl implements IssueTicketService {
         return mapToResponse(saved);
     }
     private void mapRequestToEntity(IssueTicketRequest req, IssueTicket entity) {
+//        if(req.getDescription() != null) {entity.setDescription(req.getDescription());}
+
         entity.setDescription(req.getDescription());
         entity.setCity(req.getCity());
         entity.setApartmentNumber(req.getApartmentNumber());
@@ -128,6 +137,7 @@ public class IssueTicketServiceImpl implements IssueTicketService {
                 .externalCompanyName(entity.getExternalCompanyName())
                 .assignedToName(entity.getAssignedTo() != null ? entity.getAssignedTo().getFirstName() + entity.getAssignedTo().getLastName(): null)
                 .createdByName(entity.getCreatedBy() != null ? entity.getCreatedBy().getFirstName() + entity.getCreatedBy().getLastName() : null)
+                .createdDateTIme(entity.getCreateDateTime())
                 .build();
     }
 
