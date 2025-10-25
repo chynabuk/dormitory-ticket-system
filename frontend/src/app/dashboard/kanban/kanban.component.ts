@@ -16,6 +16,7 @@ import { dateTimeFormatter } from '../../functions';
 export class KanbanComponent {
     public kanbanItems:any;
     public dateTimeFormatter = dateTimeFormatter;
+    public api = api;
 
     constructor(private httpClient: HttpClient, private loginFormService: LoginFormService) {}
 
@@ -35,6 +36,7 @@ export class KanbanComponent {
             }
         ).subscribe((res) => {
             this.kanbanItems = res;
+            console.log(res)
         });
     
     $(".kanban-target").on("dragover", (e: any) => {

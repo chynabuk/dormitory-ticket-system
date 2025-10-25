@@ -35,6 +35,9 @@
                 @for (item of kanbanItems?.created; track item.id) {
                 <div id="kanban-card-{{ item.id }}" class="kanban-card pb-3" draggable="true">
                     <div class="card w-100">
+                        @if (item.imageUrl != null) {
+                            <img src="{{ api }}/api/issues/{{ item.id }}/image" class="card-img-top">
+                        }
                         <div class="card-body">
                             <div class="d-flex justify-content-between flex-wrap">
                                 <h5 class="card-title me-2">{{ item.apartmentNumber }}-{{ item.roomNumber }} {{ item.createdByName }}</h5>
@@ -87,6 +90,9 @@
                 @for (item of kanbanItems?.resolved; track item.id) {
                 <div id="kanban-card-{{ item.id }}" class="kanban-card pb-3" draggable="true">
                     <div class="card w-100">
+                        @if (item.imageUrl != null) {
+                            <img src="{{ item.imageUrl }}" class="card-img-top">
+                        }
                         <div class="card-body">
                             <div class="d-flex justify-content-between flex-wrap">
                                 <h5 class="card-title me-2">{{ item.apartmentNumber }}-{{ item.roomNumber }} {{ item.createdByName }}</h5>
