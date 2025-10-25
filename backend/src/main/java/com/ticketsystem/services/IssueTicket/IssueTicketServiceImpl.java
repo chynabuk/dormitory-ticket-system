@@ -71,8 +71,8 @@ public class IssueTicketServiceImpl implements IssueTicketService {
     }
 
     @Override
-    public List<IssueTicketResponse> getAllByUserId() {
-        User currUser = userReadService.getUser();
+    public List<IssueTicketResponse> getAllByUserId(Long id) {
+        User currUser = userReadService.getUserById(id);
         return currUser.getIssueTicketList().stream().map(this::mapToResponse).toList();
     }
 

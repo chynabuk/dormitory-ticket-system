@@ -1,5 +1,6 @@
 package com.ticketsystem.services.user.impl;
 
+import com.ticketsystem.exceptions.impl.ResourceNotFoundException;
 import com.ticketsystem.models.dto.UserDetailDto;
 import com.ticketsystem.models.dto.UserDto;
 import com.ticketsystem.models.entities.User;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,5 +37,14 @@ public class UserReadServiceImpl implements UserReadService {
     @Override
     public List<UserDto> getAll() {
         return userRepository.findAll().stream().map(userMapper).toList();
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isEmpty()) {
+            throw new ResourceNotFoundException("User not found!");
+        }
+        return userOptional.get();
     }
 }

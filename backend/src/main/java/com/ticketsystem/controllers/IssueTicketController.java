@@ -61,9 +61,9 @@ public class IssueTicketController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/user")
-    public ResponseEntity<List<IssueTicketResponse>> getUserTickets() {
-        return new ResponseEntity<>(issueTicketService.getAllByUserId(), HttpStatus.OK);
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<IssueTicketResponse>> getUserTickets(@PathVariable Long id) {
+        return new ResponseEntity<>(issueTicketService.getAllByUserId(id), HttpStatus.OK);
     }
 
 }

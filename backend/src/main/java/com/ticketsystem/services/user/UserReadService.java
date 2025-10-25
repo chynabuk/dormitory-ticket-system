@@ -9,4 +9,5 @@ public interface UserReadService {
     UserDto getProfile();
     User getUser();
     List<UserDto> getAll();
+    User getUserById(Long id);
 }
